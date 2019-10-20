@@ -78,6 +78,23 @@ exports.Remote = class Remote extends tcp.Remote {
     })
   }
 
+  announce (topic, cb) {
+    if (!cb) cb = noop
+
+    let port = 0
+
+    try {
+      port = this.address().port
+    } catch (_) {
+      throw new Error('Server must be listening first')
+    }
+
+    this.network.bind((err) => {
+      if (err) return cb(err)
+      this.network.discovery.announce(topic, { port })
+    })
+  }
+
   destroy () {
     this.network.close((err) => {
       if (!err) this.emit('network-close')
@@ -90,3 +107,5 @@ exports.Remote = class Remote extends tcp.Remote {
     super.listen(...args)
   }
 }
+
+function noop () {}
