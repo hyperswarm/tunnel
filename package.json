@@ -8,9 +8,14 @@
     "pump": "^3.0.0",
     "tcp-forward": "^1.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "standard": "^14.3.1"
+  },
   "bin": {
     "hyperswarm-tunnel-server": "./server-bin.js"
+  },
+  "scripts": {
+    "test": "standard"
   },
   "repository": {
     "type": "git",
