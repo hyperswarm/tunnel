@@ -22,6 +22,9 @@ r.on('listening', function () {
   console.log('Listening on port ' + r.address().port)
 })
 
+const a = announce()
+if (a) r.announce(a)
+
 r.on('network-close', () => process.exit())
 
 process.once('SIGINT', function () {
@@ -37,4 +40,11 @@ function port () {
   if (i === -1) i = process.argv.indexOf('--port')
   if (i === -1) return 0
   return Number(process.argv[i + 1]) || 0
+}
+
+function announce () {
+  let i = process.argv.indexOf('-a')
+  if (i === -1) i = process.argv.indexOf('--announce')
+  if (i === -1) return null
+  return Buffer.from(process.argv[i + 1], 'hex')
 }
