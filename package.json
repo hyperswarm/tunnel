@@ -1,0 +1,25 @@
+{
+  "name": "@hyperswarm/tunnel",
+  "version": "0.0.0",
+  "description": "Tunneling service for Hyperswarm",
+  "main": "index.js",
+  "dependencies": {
+    "@hyperswarm/network": "^1.1.1",
+    "pump": "^3.0.0",
+    "tcp-forward": "^1.0.1"
+  },
+  "devDependencies": {},
+  "bin": {
+    "hyperswarm-tunnel-server": "./server-bin.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyperswarm/tunnel.git"
+  },
+  "author": "Mathias Buus (@mafintosh)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyperswarm/tunnel/issues"
+  },
+  "homepage": "https://github.com/hyperswarm/tunnel"
+}
