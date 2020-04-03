@@ -34,6 +34,11 @@ exports.Remote = class Remote extends tcp.Remote {
     })
 
     this.on('forward-connect', (socket, topic) => {
+      let socketClosed = false
+      socket.on('error', () => socket.destroy())
+      socket.on('close', function () {
+        socketClosed = true
+      })
       this.network.bind(() => {
         const t = this.network.lookup(topic)
         const seen = new Set()
@@ -60,6 +65,7 @@ exports.Remote = class Remote extends tcp.Remote {
 
         function kick () {
           if (self.network.destroyed) return
+          if (socketClosed) return destroy()
 
           if (!queued.length) {
             if (destroyOnEmpty) destroy()
@@ -71,6 +77,7 @@ exports.Remote = class Remote extends tcp.Remote {
             queued.pop()
             if (err || self.network.destroyed) return kick()
             t.destroy()
+            if (socketClosed) return connection.destroy()
             pump(connection, socket, connection)
           })
         }
