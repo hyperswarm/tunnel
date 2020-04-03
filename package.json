@@ -1,6 +1,6 @@
 {
   "name": "@hyperswarm/tunnel",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Tunneling service for Hyperswarm",
   "main": "index.js",
   "dependencies": {
