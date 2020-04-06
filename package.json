@@ -4,7 +4,7 @@
   "description": "Tunneling service for Hyperswarm",
   "main": "index.js",
   "dependencies": {
-    "@hyperswarm/network": "^1.1.1",
+    "@hyperswarm/network": "^1.3.1",
     "pump": "^3.0.0",
     "tcp-forward": "^1.0.1"
   },
