@@ -11,7 +11,12 @@ exports.Remote = class Remote extends tcp.Remote {
     const announcing = new Map()
 
     this.network = network({
-      ephemeral: false
+      ephemeral: false,
+      socket (socket) {
+        // destroy all incoming sockets
+        socket.on('error', () => socket.destroy())
+        socket.destroy()
+      }
     })
 
     this.on('forward-listening', (port, topic) => {
